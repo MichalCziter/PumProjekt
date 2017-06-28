@@ -46,7 +46,7 @@ public class ChatMessageActivity extends AppCompatActivity implements QBChatDial
     QBChatDialog qbChatDialog;
     ListView lstChatMessages;
     ImageButton sumbitButton;
-    EditText edtContent;
+    EditText edtContent, newName;
 
     ChatMessageAdapter adapter;
 
@@ -114,13 +114,15 @@ public class ChatMessageActivity extends AppCompatActivity implements QBChatDial
         alertDialogBuilder.setView(view);
         final EditText newName = (EditText)findViewById(R.id.edt_new_group_name);
 
+        //Toast.makeText(this, ""+newName.getText().toString(), Toast.LENGTH_SHORT).show();
+
         //Dialog message
         alertDialogBuilder.setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //Uzytkownik klika OK - bierzemy text z edittext i ustawiamy jako nazwe czatu
-                        qbChatDialog.setName(newName.getText().toString());
+                        //qbChatDialog.setName(newName.getText().toString());
 
                         QBDialogRequestBuilder requestBuilder = new QBDialogRequestBuilder();
                         QBRestChatService.updateGroupChatDialog(qbChatDialog,requestBuilder)
@@ -135,6 +137,7 @@ public class ChatMessageActivity extends AppCompatActivity implements QBChatDial
 
                                     @Override
                                     public void onError(QBResponseException e) {
+                                        Toast.makeText(getBaseContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
 
                                     }
                                 });

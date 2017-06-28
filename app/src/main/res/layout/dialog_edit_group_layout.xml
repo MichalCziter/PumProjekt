@@ -18,7 +18,6 @@
         android:layout_height="wrap_content">
 
         <requestFocus/>
-
     </EditText>
 
 </LinearLayout>
