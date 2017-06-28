@@ -69,4 +69,10 @@ public class QBChatDialogHolder {
             qbChat.add(qbChatDialogHashMap.get(key));
         return qbChat;
     }
+
+    public void removeDialog(String id)
+    {
+        qbChatDialogHashMap.remove(id);
+
+    }
 }

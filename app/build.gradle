@@ -35,4 +35,7 @@ dependencies {
     compile 'com.quickblox:quickblox-android-sdk-chat:3.3.0'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.0'
     testCompile 'junit:junit:4.12'
+
+    compile 'com.quickblox:quickblox-android-sdk-content:3.3.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

@@ -1,6 +1,9 @@
 package com.example.maras.androidprochatapp;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     static final String AUTH_SECRET = "4DAU682hqAvGkkt";
     static final String ACCOUNT_KEY = "QXefyQ7z9GW2FBGsNmbr";
 
+    static final int REQUEST_CODE = 1000;
+
     Button btnLogin, btnSignup;
     EditText edtUser, edtPassword;
 
@@ -28,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        requestRuntimePermission();
 
 
 
@@ -80,6 +87,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void requestRuntimePermission() {
+        if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                || checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+        {
+            requestPermissions(new String[]{
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            },REQUEST_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch(requestCode)
+        {
+            case REQUEST_CODE:
+            {
+                if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    Toast.makeText(getBaseContext(), "Mozna wczytac/zapisac", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getBaseContext(), "NieMozna wczytac/zapisac", Toast.LENGTH_SHORT).show();
+
+            }
+            break;
+        }
     }
 
     private void initializeFramework() {

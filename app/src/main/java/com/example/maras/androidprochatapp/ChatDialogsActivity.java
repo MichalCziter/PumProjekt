@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,6 +49,53 @@ public class ChatDialogsActivity extends AppCompatActivity implements QBSystemMe
     FloatingActionButton floatingActionButton;
     ListView lstChatDialogs;
 
+
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        getMenuInflater().inflate(R.menu.chat_dialog_context_menu,menu);
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+
+        switch(item.getItemId())
+        {
+            case R.id.context_delete_dialog:
+                deleteDialog(info.position);
+                break;
+        }
+
+
+        return true;
+    }
+
+    private void deleteDialog(int index) {
+
+        final QBChatDialog chatDialog = (QBChatDialog) lstChatDialogs.getAdapter().getItem(index);
+        QBRestChatService.deleteDialog(chatDialog.getDialogId(),false)
+                .performAsync(new QBEntityCallback<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid, Bundle bundle) {
+                        //usuwamy dialog z cache i odwiezamy listview
+                        QBChatDialogHolder.getInstance().removeDialog(chatDialog.getDialogId());
+                        ChatDialogsAdapters adapter = new ChatDialogsAdapters(getBaseContext(),QBChatDialogHolder.getInstance().getAllChatDialogs());
+                        lstChatDialogs.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onError(QBResponseException e) {
+
+                    }
+                });
+
+
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -92,6 +140,9 @@ public class ChatDialogsActivity extends AppCompatActivity implements QBSystemMe
         createSessionForChat();
 
         lstChatDialogs = (ListView) findViewById(R.id.lstChatDialogs);
+
+        registerForContextMenu(lstChatDialogs);
+
         lstChatDialogs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
