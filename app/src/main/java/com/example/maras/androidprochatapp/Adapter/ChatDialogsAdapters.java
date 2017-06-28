@@ -1,6 +1,7 @@
 package com.example.maras.androidprochatapp.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
+import com.example.maras.androidprochatapp.Holder.QBUnreadMessageHolder;
 import com.example.maras.androidprochatapp.R;
 import com.quickblox.chat.model.QBChatDialog;
 
@@ -52,12 +54,15 @@ public class ChatDialogsAdapters extends BaseAdapter{
             view = inflater.inflate(R.layout.list_chat_dialog, null);
 
             TextView txtTitle, txtMessage;
-            ImageView imageView;
+            ImageView imageView, image_unread;
 
             txtMessage = (TextView) view.findViewById(R.id.list_chat_dialog_message);
             txtTitle = (TextView) view.findViewById(R.id.list_chat_dialog_title);
 
             imageView = (ImageView)view.findViewById(R.id.image_chatDialog);
+            image_unread = (ImageView)view.findViewById(R.id.image_unread);
+
+
 
             txtMessage.setText(qbChatDialogs.get(position).getLastMessage());
             txtTitle.setText(qbChatDialogs.get(position).getName());
@@ -75,6 +80,21 @@ public class ChatDialogsAdapters extends BaseAdapter{
             TextDrawable drawable = builder.build(txtTitle.getText().toString().substring(0,1).toUpperCase(),randomColor);
 
             imageView.setImageDrawable(drawable);
+
+            //ilosc nowych wiadomosci
+
+            TextDrawable.IBuilder unreadBuilder = TextDrawable.builder().beginConfig()
+                    .withBorder(4)
+                    .endConfig()
+                    .round();
+
+            int unread_count = QBUnreadMessageHolder.getInstance().getBundle().getInt(qbChatDialogs.get(position).getDialogId());
+            if(unread_count>0)
+            {
+                TextDrawable unread_drawable = unreadBuilder.build(""+unread_count, Color.RED);
+                image_unread.setImageDrawable(unread_drawable);
+            }
+
 
 
         }
