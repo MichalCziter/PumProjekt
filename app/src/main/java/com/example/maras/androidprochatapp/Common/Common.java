@@ -23,6 +23,9 @@ public class Common {
     public static final String UPDATE_REMOVE_MODE = "remove";
 
 
+    //Wybor obrazka dla profilu
+    public static final int SELECT_PICTURE = 7171;
+
 
     //Tworzenie nazwy czatu dla uzytkownikow z listy
 

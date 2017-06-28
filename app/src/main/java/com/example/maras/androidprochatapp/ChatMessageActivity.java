@@ -87,8 +87,6 @@ public class ChatMessageActivity extends AppCompatActivity implements QBChatDial
     //Update dialog
     Toolbar toolbar;
 
-    //Wybor obrazka dla czatu
-    static final int SELECT_PICTURE = 7171;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -519,7 +517,7 @@ public class ChatMessageActivity extends AppCompatActivity implements QBChatDial
                 Intent selectImage = new Intent();
                 selectImage.setType("image/*");
                 selectImage.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(selectImage,"Wybierz obrazek"),SELECT_PICTURE);
+                startActivityForResult(Intent.createChooser(selectImage,"Wybierz Obrazek"),Common.SELECT_PICTURE);
             }
         });
 
@@ -536,7 +534,7 @@ public class ChatMessageActivity extends AppCompatActivity implements QBChatDial
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK)
         {
-            if(requestCode == SELECT_PICTURE)
+            if(requestCode == Common.SELECT_PICTURE)
             {
                 Uri selectedImageUri = data.getData();
                 final ProgressDialog mDialog = new ProgressDialog(ChatMessageActivity.this);
