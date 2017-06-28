@@ -14,6 +14,16 @@ public class Common {
 
     public static final String DIALOG_EXTRA = "Dialogs";
 
+    public static final String UPDATE_DIALOG_EXTRA = "ChatDialogs";
+
+    public static final String UPDATE_MODE = "mode";
+
+    public static final String UPDATE_ADD_MODE = "add";
+
+    public static final String UPDATE_REMOVE_MODE = "remove";
+
+
+
     //Tworzenie nazwy czatu dla uzytkownikow z listy
 
     public static String createChatDialogsName(List<Integer> qbUsers)
