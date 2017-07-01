@@ -103,7 +103,7 @@ public class UserProfile extends AppCompatActivity {
 
         //Dodajemy toolbar
         Toolbar toolbar = (Toolbar)findViewById(R.id.user_update_toolbar);
-        toolbar.setTitle("Android Pro Chat");
+        toolbar.setTitle("PUM Projekt");
         setSupportActionBar(toolbar);
 
         initViews();
@@ -156,7 +156,7 @@ public class UserProfile extends AppCompatActivity {
                 final ProgressDialog mDialog = new ProgressDialog(UserProfile.this);
 
 
-                mDialog.setMessage("Please wait...");
+                mDialog.setMessage("Prosze Czekac...");
                 mDialog.show();
 
                 QBUsers.updateUser(user).performAsync(new QBEntityCallback<QBUser>() {

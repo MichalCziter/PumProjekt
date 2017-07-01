@@ -46,7 +46,7 @@ import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 public class ChatDialogsActivity extends AppCompatActivity implements QBSystemMessageListener, QBChatDialogMessageListener{
 
-    FloatingActionButton floatingActionButton;
+    FloatingActionButton floatingActionButton, floatingActionOnline;
     ListView lstChatDialogs;
 
 
@@ -134,7 +134,7 @@ public class ChatDialogsActivity extends AppCompatActivity implements QBSystemMe
 
         //Dodajemy Toolbar
         Toolbar toolbar = (Toolbar)findViewById(R.id.chat_dialog_toolbar);
-        toolbar.setTitle("Android Pro Chat");
+        toolbar.setTitle("PUM Projekt");
         setSupportActionBar(toolbar);
 
         createSessionForChat();
@@ -161,6 +161,15 @@ public class ChatDialogsActivity extends AppCompatActivity implements QBSystemMe
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ChatDialogsActivity.this,ListUsersActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        floatingActionOnline = (FloatingActionButton) findViewById(R.id.online_user);
+        floatingActionOnline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ChatDialogsActivity.this,UsersOnline.class);
                 startActivity(intent);
             }
         });
@@ -217,7 +226,7 @@ public class ChatDialogsActivity extends AppCompatActivity implements QBSystemMe
     private void createSessionForChat() {
 
         final ProgressDialog mDialog = new ProgressDialog(ChatDialogsActivity.this);
-        mDialog.setMessage("Please waiting...");
+        mDialog.setMessage("Prosze czekac...");
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
 

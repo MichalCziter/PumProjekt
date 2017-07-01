@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 QBUsers.signIn(qbUser).performAsync(new QBEntityCallback<QBUser>() {
                     @Override
                     public void onSuccess(QBUser qbUser, Bundle bundle) {
-                        Toast.makeText(getBaseContext(), "Login succesfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), "Zalogowales Sie", Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(MainActivity.this, ChatDialogsActivity.class);
                         intent.putExtra("user", user);

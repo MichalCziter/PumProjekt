@@ -210,7 +210,7 @@ public class ChatMessageActivity extends AppCompatActivity implements QBChatDial
     private void deleteMessage() {
 
         final ProgressDialog deleteDialog = new ProgressDialog(ChatMessageActivity.this);
-        deleteDialog.setMessage("Pleade wait...");
+        deleteDialog.setMessage("Prosze czekac...");
         deleteDialog.show();
 
         editMessage = QBChatMessagesHolder.getInstance().getChatMessagesByDialogId(qbChatDialog.getDialogId())
@@ -308,7 +308,7 @@ public class ChatMessageActivity extends AppCompatActivity implements QBChatDial
                     } else {
 
                         final ProgressDialog updateDialog = new ProgressDialog(ChatMessageActivity.this);
-                        updateDialog.setMessage("Pleade wait...");
+                        updateDialog.setMessage("Prosze czekac...");
                         updateDialog.show();
 
                         //kodzik jezeli jest w edit mode

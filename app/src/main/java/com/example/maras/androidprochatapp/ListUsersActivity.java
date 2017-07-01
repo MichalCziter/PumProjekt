@@ -74,7 +74,7 @@ public class ListUsersActivity extends AppCompatActivity {
                     else if (lstUsers.getCheckedItemPositions().size() > 1)
                         createGroupChat(lstUsers.getCheckedItemPositions());
                     else
-                        Toast.makeText(ListUsersActivity.this, "Please select friend to chat", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ListUsersActivity.this, "Wybierz osobe do czatu", Toast.LENGTH_SHORT).show();
 
                 } else if (mode.equals(Common.UPDATE_ADD_MODE) && qbChatDialog != null) {
                     if (userAdd.size() > 0) {
@@ -94,7 +94,7 @@ public class ListUsersActivity extends AppCompatActivity {
                                 .performAsync(new QBEntityCallback<QBChatDialog>() {
                                     @Override
                                     public void onSuccess(QBChatDialog qbChatDialog, Bundle bundle) {
-                                        Toast.makeText(getBaseContext(), "Add user succes", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getBaseContext(), "Udalo sie dodac", Toast.LENGTH_SHORT).show();
                                         finish();
                                     }
 
@@ -122,7 +122,7 @@ public class ListUsersActivity extends AppCompatActivity {
                                 .performAsync(new QBEntityCallback<QBChatDialog>() {
                                     @Override
                                     public void onSuccess(QBChatDialog qbChatDialog, Bundle bundle) {
-                                        Toast.makeText(getBaseContext(), "Remove user succes", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getBaseContext(), "Udalo sie usunac", Toast.LENGTH_SHORT).show();
                                         finish();
                                     }
 
@@ -158,7 +158,7 @@ public class ListUsersActivity extends AppCompatActivity {
     private void loadListUserInGroup() {
 
         //Wszyscy userzy w grupie
-        btnCreateChat.setText("Remove User");
+        btnCreateChat.setText("Usun Uzytkownika");
         QBRestChatService.getChatDialogById(qbChatDialog.getDialogId())
                 .performAsync(new QBEntityCallback<QBChatDialog>() {
                     @Override
@@ -190,7 +190,7 @@ public class ListUsersActivity extends AppCompatActivity {
 
     private void loadListAvailableUser() {
 
-        btnCreateChat.setText("Add User");
+        btnCreateChat.setText("Dodaj Osobe");
         QBRestChatService.getChatDialogById(qbChatDialog.getDialogId())
                 .performAsync(new QBEntityCallback<QBChatDialog>() {
                     @Override
@@ -227,7 +227,7 @@ public class ListUsersActivity extends AppCompatActivity {
     private void createGroupChat(SparseBooleanArray checkedItemPositions) {
 
         final ProgressDialog mDialog = new ProgressDialog(ListUsersActivity.this);
-        mDialog.setMessage("Please waiting...");
+        mDialog.setMessage("Prosze czekac...");
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
 
@@ -255,7 +255,7 @@ public class ListUsersActivity extends AppCompatActivity {
             @Override
             public void onSuccess(QBChatDialog qbChatDialog, Bundle bundle) {
                 mDialog.dismiss();
-                Toast.makeText(getBaseContext(), "Create Chat dialog succesfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Udalo sie utworzyc czat", Toast.LENGTH_SHORT).show();
 
                 //wysylamy wiadomosc systemowa do odbiorcy
                 QBSystemMessagesManager qbSystemMessagesManager = QBChatService.getInstance().getSystemMessagesManager();
@@ -291,7 +291,7 @@ public class ListUsersActivity extends AppCompatActivity {
     private void createPrivateChat(SparseBooleanArray checkedItemPositions) {
 
         final ProgressDialog mDialog = new ProgressDialog(ListUsersActivity.this);
-        mDialog.setMessage("Please waiting...");
+        mDialog.setMessage("Prosze czekac...");
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
 
@@ -309,7 +309,7 @@ public class ListUsersActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(QBChatDialog qbChatDialog, Bundle bundle) {
                         mDialog.dismiss();
-                        Toast.makeText(getBaseContext(), "Create Private Chat dialog succesfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), "Czat 1do1 utworzony", Toast.LENGTH_SHORT).show();
 
                         //wysylamy wiadomosc systemowa do odbiorcy
                         QBSystemMessagesManager qbSystemMessagesManager = QBChatService.getInstance().getSystemMessagesManager();

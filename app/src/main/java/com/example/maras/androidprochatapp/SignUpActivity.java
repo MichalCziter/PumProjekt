@@ -56,7 +56,7 @@ public class SignUpActivity extends AppCompatActivity {
                 QBUsers.signUp(qbUser).performAsync(new QBEntityCallback<QBUser>() {
                     @Override
                     public void onSuccess(QBUser qbUser, Bundle bundle) {
-                        Toast.makeText(getBaseContext(),"Sign Up succesfully",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(),"Zarejestrowano",Toast.LENGTH_SHORT).show();
                         finish();
                     }
 
